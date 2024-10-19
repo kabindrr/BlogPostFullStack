@@ -1,8 +1,11 @@
 import express from "express";
-
+import { MongoDBDatabase } from "./src/database/dbconfig.js";
 
 const app = express();
-const PORT = 3001;
+const PORT = 3010;
+
+//Database
+MongoDBDatabase();
 
 app.listen(PORT, (error) => {
   error
