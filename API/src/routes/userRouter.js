@@ -1,12 +1,13 @@
 import express, { Router } from "express";
 import { addUser } from "../modals/userModal.js";
+import { hashPassword } from "../utils/bcrypt.js";
 
 export const userRouter = express.Router();
 
 userRouter.post("/signup", async (req, res) => {
   try {
-    console.log(req.body);
     const { username, email, password } = req.body;
+    req.body.password = await hashPassword(password);
     const response = await addUser(req.body);
 
     response?._id
