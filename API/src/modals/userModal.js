@@ -1,4 +1,4 @@
-import userSchema from "userSchema.js";
+import userSchema from "./userSchema.js";
 
 export const addUser = (obj) => {
   return userSchema(obj).save();
