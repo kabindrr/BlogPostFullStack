@@ -1,0 +1,11 @@
+@apiEP = http://localhost:3010/api/v1/users
+
+###post
+POST {{apiEP}}/signup
+Content-Type: application/json
+
+{
+      "username":"Kabi",
+  "email" : "a@email.com",
+  "password": "as"
+}
