@@ -9,3 +9,12 @@ Content-Type: application/json
   "email" : "a@email.com",
   "password": "as"
 }
+
+###comment
+POST {{apiEP}}/comment/:id
+Content-Type: application/json
+
+{
+  "id":"67106e97bb1e331e7a9024fb",
+  "comment":"user comment 1"
+}
