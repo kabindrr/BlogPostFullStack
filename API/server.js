@@ -1,25 +1,35 @@
+// import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import { MongoDBDatabase } from "./src/database/dbconfig.js";
-import morgan from "morgan";
-import { userRouter } from "./src/routes/userRouter.js";
+import { connectMongoDB } from "./src/config/dbConfig.js";
 
+// get config file
+import { config } from "./src/config/config.js";
+
+import authRouter from "./src/router/authRouter.js";
+import userRouter from "./src/router/userRouter.js";
+import postRouter from "./src/router/postRouter.js";
+
+// dotenv.config();
 const app = express();
-const PORT = 3010;
+const PORT = config.port;
 
-//middlewares
-app.use(cors());
+connectMongoDB();
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(cors());
 
-//Database
-MongoDBDatabase();
+app.get("/", (request, response) => {
+  response.send("BLOG APIs");
+});
 
-//routes
-app.use("/api/v1/users", userRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/post", postRouter);
 
 app.listen(PORT, (error) => {
   error
-    ? console.log("Server error")
-    : console.log(`server connected at http://localhost:${PORT}`);
+    ? console.log("ERROR starting API server")
+    : console.log("http://localhost:" + PORT + " started");
 });
