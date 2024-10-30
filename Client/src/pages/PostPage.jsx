@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { Col, Container, Row, Image } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { fetchPost } from "../utils/axiosHelper";
+import { Comments } from "../components/Comments";
 
 const PostPage = () => {
   // Sample data for the article
@@ -24,6 +25,7 @@ const PostPage = () => {
     if (response.status == "error") {
       setPost({});
     } else {
+      console.log(4000, response.data);
       setPost(response.data);
     }
   };
@@ -62,6 +64,7 @@ const PostPage = () => {
               <p>
                 <small>{post.date}</small>
               </p>
+              <Comments postid={post._id} comments={post.Comments} />
             </div>
           </Col>
         </Row>

@@ -7,9 +7,11 @@ import { FloatingButton } from "../components/FloatingButton";
 import { Link } from "react-router-dom";
 import { deletePost, fetchMyPost } from "../utils/axiosHelper";
 import { toast } from "react-toastify";
+import { UserComments } from "../components/UserComments";
 
 const MyPostPage = () => {
   const [posts, setPosts] = useState([]);
+  console.log(posts);
 
   const deleteFunction = async (id) => {
     if (confirm("Do you want to Delete ?")) {
@@ -60,6 +62,7 @@ const MyPostPage = () => {
             </div>
           </Col>
         </Row>
+        <UserComments comments={posts.data.comments} />
       </Container>
       <Footer />
     </>
